@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    "name": "网易云音乐",
+    "version": "1.0",
+    "description": "我制作的一个网易云音乐插件",
+    "icons": {
+        "19": "images/icon19.png",
+        "48": "images/icon19.png"
+    },
+    "browser_action": {
+        "default_title": "我的网易云音乐",
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "*://music.163.com/*",
+        "*://www.baidu.com/*"
+    ]
+}

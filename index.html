@@ -1,0 +1,548 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        width: 360px;
+        height: 600px;
+    }
+    li{
+        list-style: none;
+    }
+    a:hover{
+        background: lightblue;
+        opacity: 0.6;
+    }
+    /*login*/
+    #login{
+        position: absolute;
+        width: 360px;
+    }
+    #login h1{
+        color: #EA2000;
+        text-align: center;
+        margin: 50px auto 30px;
+    }
+    #login #user_id{
+        text-align: center;
+        display: block;
+        width: 150px;
+        height: 30px;
+        line-height: 30px;
+        margin: 10px auto 5px;
+    }
+    #login #user_btn{
+        text-align: center;
+        display: block;
+        width: 150px;
+        height: 30px;
+        line-height: 30px;
+        margin: 10px auto 5px;
+        text-decoration: none;
+        color: black;
+        background: gray;
+    }
+    .show{
+        display: block;
+    }
+    .hide{
+        display: none;
+    }
+    /*first-page*/
+    #playlist_container{
+        width: 360px;
+        height: 600px;
+    }
+    #playlist_container .welcome{
+        width: 360px;
+        height: 150px;
+        background-size: contain;
+    }
+    #playlist_container .welcome .touxiang{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-top: 20px;
+        margin-left: -40px;
+        position: relative;
+        left: 50%;
+    }
+    #playlist_container .welcome .nickname{
+        text-align: center;
+        margin-top: 20px;
+    }
+    #playlist_container .hd{
+        padding-left: 10px;
+        background: #EEEFF0;
+        font-weight: normal;
+    }
+    #playlist_container .hd:before{
+        content: '歌单';
+    }
+    #playlist_container ul{
+        margin-bottom: 40px;
+    }
+    #playlist_container .itm{
+        padding-left: 5px;
+        position: relative;
+        margin: 5px auto;
+        height: 50px;
+        /*overflow: hidden;*/
+    }
+    #playlist_container .itm .pic{
+        float: left;
+    }
+    #playlist_container .itm .picture{
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+    }
+    #playlist_container .itm .content{
+        display: inline-block;
+        float: left;
+    }
+    #playlist_container .itm .content h4{
+        font-size: 15px;
+        height: 20px;
+        line-height: 20px;
+        margin: 6px 0 0 0;
+        font-weight: normal;
+    }
+    #playlist_container .itm .content div{
+        font-size: 12px;
+        color: gray;
+        height: 14px;
+        line-height: 14px;
+        margin: 6px 0 0 0;
+    }
+    #playlist_container .itm .content .content_1:before{
+        content: '首，播放';
+    }
+    #playlist_container .itm .content .content_2:before{
+        content: '次';
+    }
+    .f-link {
+        z-index: 10;
+    }
+    .f-link {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    /*second-page*/
+    #detail_container{
+        width: 360px;
+        height: 600px;
+    }
+    #detail_container .detail-header{
+        width: 360px;
+        height: 150px;
+        background: #776e6e;
+    }
+    #detail_container .detail-header .list-picture{
+        width: 100px;
+        height: 100px;
+        float: left;
+        margin: 25px 25px 25px 15px;
+    }
+    #detail_container .detail-header .detail-content{
+        float: left;
+    }
+    #detail_container .detail-header .list-name{
+        color: white;
+        font-size: 17px;
+        margin: 30px 0 20px 0;
+        font-weight: normal;
+    }
+    #detail_container .detail-header .detail-content div{
+        height: 30px;
+    }
+    #detail_container .detail-header .detail-content img{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    #detail_container .detail-header .detail-content span{
+        position: relative;
+        bottom: 10px;
+        color: #A2A59E;
+        font-size: 14px;
+    }
+    #detail_container .hd{
+        padding-left: 10px;
+        background: #EEEFF0;
+        font-weight: normal;
+    }
+    #detail_container .hd:before{
+        content: '歌曲列表';
+    }
+    #detail_container ul{
+        margin-bottom: 40px;
+    }
+    #detail_container .item{
+        padding-left: 5px;
+        position: relative;
+        margin: 5px auto;
+        height: 50px;
+    }
+    #detail_container .item .num{
+        float: left;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 20px;
+    }
+    #detail_container .item .discription{
+        float: left;
+        width: 305px;
+        height: 50px;
+        border-bottom: 1px solid ;
+    }
+    #detail_container .item .discription h3{
+        font-weight: 800;
+        width: 250px;
+        height: 25px;
+        line-height: 25px;
+        overflow: hidden;
+    }
+    #detail_container .item .discription p{
+        font-size: 10px;
+        color: gray;
+        width: 250px;
+        height: 20px;
+        line-height: 20px;
+        overflow: hidden;
+    }
+    #detail_container .item .discription .discription_2:before{
+        content: '-';
+    }
+    #detail_container .item .discription .link{
+        z-index: 10;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    #detail_container .item img{
+        position: absolute;
+        right: 5px;
+        width: 50px;
+        height: 50px;
+    }
+    /*third-page*/
+    #song_play{
+        width: 360px;
+        height: 600px;
+        position: relative;
+        background: url("images/25288767450700mohu.jpg");
+        background-size: cover;
+    }
+    #song_play .song-header{
+        width: 300px;
+        height: 300px;
+        background: url("images/disc-ip6.png");
+        background-size: 300px auto;
+        position: absolute;
+        margin-left: -150px;
+        left: 50%;
+        top: 100px;
+    }
+    #song_play .song-header .song-picture{
+        position: absolute;
+        margin-left: -95px;
+        margin-top: -95px;
+        top: 50%;
+        left: 50%;
+        width: 190px;
+        height: 190px;
+        border-radius: 50%;
+        animation: rotate 20s linear infinite;
+    }
+    @keyframes rotate {
+        100%{
+            transform: rotateZ(360deg);
+        }
+    }
+    #song_play .song-header .needle{
+        position: absolute;
+        width: 96px;
+        height: 137px;
+        top: -70px;
+        left: 120px;
+    }
+    #song_play .song-header .stop{
+        position: absolute;
+        margin-left: -25px;
+        margin-top: -25px;
+        top: 50%;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: none;
+    }
+    #song_play .song-message{
+        position: relative;
+        top: 400px;
+        text-align: center;
+    }
+    #song_play .song-message h2{
+        font-weight: normal;
+        font-size: 18px;
+    }
+    #song_play .song-message .message_1:before{
+        content: '-';
+    }
+    #song_play .song-message .geci{
+        width: 300px;
+        height: 90px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    /*控制按钮*/
+    #btn_group{
+        position: fixed;
+        z-index: 20;
+        bottom: 0;
+        width: 360px;
+        text-align: center;
+        background: black;
+    }
+    #btn_group a{
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 18px;
+        text-decoration: none;
+        color: white;
+        display: inline-block;
+        margin: 0 10px;
+    }
+    #btn_group .active{
+        background: red;
+    }
+</style>
+</head>
+<body ondragstart="return false">
+<div id="login" class="show">
+    <h1>Happy Every Day!</h1>
+    <input type="text" id="user_id" value="366526585"/>
+    <a href="#" id="user_btn">进入我的歌单</a>
+</div>
+<!--第一页-->
+<div id="playlist_container" class="hide">
+    <!--<div class="welcome" style="background-image: url('http://p1.music.126.net/bmA_ablsXpq3Tk9HlEg9sA==/2002210674180203.jpg');">
+        <img class="touxiang" src="http://p1.music.126.net/CsxhU1mAAY-llcmXEaF86w==/18713687906233630.jpg" alt=""/>
+        <p class="nickname">谁痴睡痴</p>
+    </div>
+    <h3 class="hd">(10)</h3>
+    <ul>
+        <li class="itm">
+            <div class="pic">
+                <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+            </div>
+            <div class="content">
+                <h4>谁痴睡痴喜欢的音乐</h4>
+                <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+            </div>
+            <a class="f-link"  value="id"></a>
+        </li>
+        <li class="itm">
+            <div class="pic">
+                <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+            </div>
+            <div class="content">
+                <h4>谁痴睡痴喜欢的音乐</h4>
+                <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+            </div>
+            <a class="f-link" href="#" value="id"></a>
+        </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li><li class="itm">
+        <div class="pic">
+            <img class="picture" src="http://p3.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg?param=150y150">
+        </div>
+        <div class="content">
+            <h4>谁痴睡痴喜欢的音乐</h4>
+            <div>22<span class="content_1"></span>11<span class="content_2"></span></div>
+        </div>
+        <a class="f-link" href="#" value="id"></a>
+    </li>
+    </ul>-->
+</div>
+
+<!--第二页-->
+<div id="detail_container" class="hide">
+    <!--<div class="detail-header">
+        <img class="list-picture" src="http://p1.music.126.net/U_8R7UeMrb1HirMfHMR78A==/528865094244609.jpg" alt=""/>
+        <div class="detail-content">
+            <h2 class="list-name">谁痴睡痴喜欢的音乐</h2>
+            <div>
+                <img src="http://p1.music.126.net/CsxhU1mAAY-llcmXEaF86w==/18713687906233630.jpg" alt=""/>
+                <span>谁痴睡痴</span>
+            </div>
+        </div>
+    </div>
+    <h3 class="hd"></h3>
+    <ul>
+        <li class="item">
+            <span class="num">1</span>
+            <div class="discription">
+                <h3>The promise</h3>
+                <p>Secret Garden<span class="discription_2"></span>Once In A Red Moon</p>
+                <a class="link" value="id" href="#"></a>
+            </div>
+            <img src="images/play_btn-ip6.png" alt=""/>
+        </li>
+        <li class="item">
+            <span class="num">1</span>
+            <div class="discription">
+                <h3>The promise</h3>
+                <p>Secret Garden- Once In A Red Moon</p>
+                <a class="link" href="#"></a>
+            </div>
+            <img src="http://s2.music.126.net/style/mobile/img/share/share_icon_play@2x.png?d70719ada5b84fee9f8bf71697548127" alt=""/>
+        </li>
+        <li class="item">
+            <span class="num">1</span>
+            <div class="discription">
+                <h3>The promise</h3>
+                <p>Secret Garden- Once In A Red Moon</p>
+                <a class="link" href="#"></a>
+            </div>
+            <img src="images/play_btn-ip6.png" alt=""/>
+        </li>
+    </ul>-->
+</div>
+
+<!--第三页(播放页)-->
+<div id="song_play" class="hide">
+    <audio id="play_audio" src="http://m2.music.126.net/N8IVfH1wOdsNsyjl2EtaiA==/1243547651016763.mp3" autoplay="autoplay" loop="loop"></audio>
+    <div class="song_play_container">
+        <!--<div class="song-header">
+            <img class="song-picture" src="images/25288767450700.jpg" alt=""/>
+            <img class="needle" src="images/needle-ip6.png" alt=""/>
+            <img class="stop" src="images/play_btn-ip6.png" alt=""/>
+        </div>
+        <div class="song-message">
+            <h2><span>The promise</span><span class="message_1"></span><span>Secret Garden</span></h2>
+            <div class="geci">
+                纯音乐，无歌词
+            </div>
+        </div>-->
+    </div>
+</div>
+<div style="clear: both "></div>
+<!--控制按钮-->
+<div id="btn_group" class="hide">
+    <a value="0" class="active" href="#">歌单列表</a>
+    <a value="1" class="" href="#">歌曲列表</a>
+    <a value="2" class="" href="#">正在进行</a>
+</div>
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
